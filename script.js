@@ -1,4 +1,4 @@
-// script.js - Humaira Pervaish Portfolio JavaScript
+// script.js - White Theme Portfolio JavaScript
 
 // DOM Elements
 const menuToggle = document.getElementById('menuToggle');
@@ -6,7 +6,6 @@ const navLinks = document.getElementById('navLinks');
 const contactForm = document.getElementById('contactForm');
 const statNumbers = document.querySelectorAll('.stat-number');
 const skillItems = document.querySelectorAll('.skill-list li');
-const aiPatterns = document.querySelectorAll('.ai-pattern');
 
 // Mobile Menu Toggle
 function initMobileMenu() {
@@ -48,27 +47,113 @@ function initContactForm() {
             
             // Simple validation
             if (!name || !email || !interest) {
-                alert('Please fill in all fields before submitting.');
+                showMessage('Please fill in all fields before submitting.', 'error');
                 return;
             }
             
-            // In a real application, you would send this data to a server
-            console.log('Form submitted:', { name, email, interest });
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
             
-            // Show success message
-            const interestText = {
-                'ai-education': 'AI in Education',
-                'research': 'Research Collaboration',
-                'workshop': 'Workshop/Consultation',
-                'other': 'General Inquiry'
-            }[interest] || 'Your inquiry';
-            
-            alert(`Thank you ${name}! Your ${interestText} message has been sent. I'll get back to you within 24-48 hours.`);
-            
-            // Reset form
-            contactForm.reset();
+            // Simulate API call
+            setTimeout(() => {
+                // In a real application, you would send this data to a server
+                console.log('Form submitted:', { name, email, interest });
+                
+                // Show success message
+                const interestText = {
+                    'ai-education': 'AI in Education',
+                    'research': 'Research Collaboration',
+                    'workshop': 'Workshop/Consultation',
+                    'other': 'General Inquiry'
+                }[interest] || 'Your inquiry';
+                
+                showMessage(`Thank you ${name}! Your ${interestText} message has been sent. I'll get back to you within 24-48 hours.`, 'success');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
         });
     }
+}
+
+// Show message function
+function showMessage(message, type = 'success') {
+    // Remove any existing messages
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = `form-message form-message-${type}`;
+    messageEl.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .form-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            max-width: 400px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-message-success {
+            background: #20C997;
+            color: white;
+            border-left: 4px solid #198754;
+        }
+        
+        .form-message-error {
+            background: #E83E8C;
+            color: white;
+            border-left: 4px solid #DC3545;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    `;
+    
+    // Append to body
+    document.head.appendChild(style);
+    document.body.appendChild(messageEl);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        messageEl.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            if (messageEl.parentNode) {
+                messageEl.parentNode.removeChild(messageEl);
+            }
+        }, 300);
+    }, 5000);
 }
 
 // Smooth Scrolling
@@ -100,8 +185,8 @@ function initCounterAnimation() {
     
     const animateCounter = (element) => {
         const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
+        const duration = 2000;
+        const increment = target / (duration / 16);
         let current = 0;
         
         const updateCounter = () => {
@@ -139,14 +224,12 @@ function initHeaderScroll() {
     if (!header) return;
     
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            header.style.backgroundColor = 'rgba(26, 26, 46, 0.98)';
-            header.style.backdropFilter = 'blur(15px)';
-            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
         } else {
-            header.style.backgroundColor = 'rgba(26, 26, 46, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
-            header.style.boxShadow = 'none';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
         }
     });
 }
@@ -156,33 +239,12 @@ function initSkillHoverEffects() {
     skillItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
             this.style.transform = 'translateX(10px)';
-            this.style.boxShadow = '0 5px 15px rgba(157, 78, 221, 0.2)';
-            this.style.borderLeft = '3px solid var(--accent-purple)';
+            this.style.boxShadow = '0 5px 15px rgba(111, 66, 193, 0.1)';
         });
         
         item.addEventListener('mouseleave', function() {
             this.style.transform = 'translateX(0)';
             this.style.boxShadow = 'none';
-            this.style.borderLeft = 'none';
-        });
-    });
-}
-
-// Animate AI patterns
-function initAIPatterns() {
-    aiPatterns.forEach((pattern, index) => {
-        // Add animation
-        pattern.style.animation = `float ${3 + index}s ease-in-out infinite alternate`;
-        
-        // Add subtle rotation
-        pattern.style.transition = 'transform 0.5s ease';
-        
-        // Add mouse move effect
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 10;
-            const y = (e.clientY / window.innerHeight) * 10;
-            
-            pattern.style.transform = `translate(${x}px, ${y}px)`;
         });
     });
 }
@@ -193,17 +255,17 @@ function initCardHoverEffects() {
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('.expertise-icon');
+            const icon = this.querySelector('.expertise-icon, .highlight-icon, .contact-icon');
             if (icon) {
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.transform = 'scale(1.1)';
                 icon.style.transition = 'transform 0.3s ease';
             }
         });
         
         card.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('.expertise-icon');
+            const icon = this.querySelector('.expertise-icon, .highlight-icon, .contact-icon');
             if (icon) {
-                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.transform = 'scale(1)';
             }
         });
     });
@@ -226,7 +288,7 @@ function initFormEffects() {
 
 // Initialize all functions when DOM is loaded
 function initPortfolio() {
-    console.log('Humaira Pervaish Portfolio - Initializing...');
+    console.log('Humaira Pervaish Portfolio - White Theme Initializing...');
     
     // Initialize all components
     initMobileMenu();
@@ -235,7 +297,6 @@ function initPortfolio() {
     initCounterAnimation();
     initHeaderScroll();
     initSkillHoverEffects();
-    initAIPatterns();
     initCardHoverEffects();
     initFormEffects();
     
@@ -248,10 +309,10 @@ function initPortfolio() {
     }, 100);
     
     // Console welcome message
-    console.log('%c✨ Humaira Pervaish Portfolio Loaded Successfully! ✨', 
-        'color: #9D4EDD; font-size: 16px; font-weight: bold;');
+    console.log('%c✨ Humaira Pervaish Portfolio - White Theme ✨', 
+        'color: #6F42C1; font-size: 16px; font-weight: bold;');
     console.log('%cMathematics Educator • AI Analyst • Innovative Thinker', 
-        'color: #00B4D8; font-size: 14px;');
+        'color: #20C997; font-size: 14px;');
 }
 
 // Initialize when DOM is fully loaded
@@ -259,20 +320,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPortfolio);
 } else {
     initPortfolio();
-}
-
-// Export functions for testing (if needed)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        initMobileMenu,
-        initContactForm,
-        initSmoothScroll,
-        initCounterAnimation,
-        initHeaderScroll,
-        initSkillHoverEffects,
-        initAIPatterns,
-        initCardHoverEffects,
-        initFormEffects,
-        initPortfolio
-    };
 }
