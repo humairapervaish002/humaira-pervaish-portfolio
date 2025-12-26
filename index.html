@@ -4,42 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humaira Pervaish | Mathematician & Data Analyst</title>
-    <link rel="stylesheet" href="humaira.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">Humaira<span>Pervaish</span></div>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Humaira Pervaish</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="btn-nav">Get In Touch</a></li>
             </ul>
-            <div class="menu-toggle">
+            <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
+        <div class="container hero-container">
             <div class="hero-content">
                 <h1>Humaira Pervaish</h1>
                 <h2>Mathematician & Data Analyst</h2>
-                <p class="tagline">Passionate about data science, AI, and innovation in education</p>
-                <p class="description">Leveraging mathematical models and data analytics to drive educational transformation and AI innovation.</p>
-                <a href="#contact" class="btn">Get in Touch</a>
+                <p class="tagline">A passionate Mathematician and Data Analyst with expertise in statistical modeling, AI applications, and innovation in education.</p>
+                <a href="#contact" class="btn-hero">Get In Touch</a>
             </div>
             <div class="hero-image">
                 <div class="image-placeholder">
-                    <i class="fas fa-chart-line"></i>
                     <i class="fas fa-calculator"></i>
+                    <i class="fas fa-chart-line"></i>
                     <i class="fas fa-robot"></i>
                     <i class="fas fa-graduation-cap"></i>
                 </div>
@@ -50,85 +48,122 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Humaira</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Humaira Pervaish is a passionate mathematician and data analyst with a strong focus on applying data science and AI to transform educational systems.</p>
-                    <p>With a background in advanced mathematics, she bridges the gap between theoretical models and practical applications in data analysis and artificial intelligence.</p>
-                    <p>Her work is driven by a belief that data-informed strategies can revolutionize how we approach education, making it more accessible, personalized, and effective.</p>
-                    <div class="about-highlights">
-                        <div class="highlight">
-                            <i class="fas fa-university"></i>
-                            <span>M.Sc. in Applied Mathematics</span>
-                        </div>
-                        <div class="highlight">
-                            <i class="fas fa-database"></i>
-                            <span>5+ Years in Data Analytics</span>
-                        </div>
-                        <div class="highlight">
-                            <i class="fas fa-brain"></i>
-                            <span>AI & Machine Learning Specialist</span>
-                        </div>
-                        <div class="highlight">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Education Innovation Advocate</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>24+</h3>
-                        <p>Data Projects</p>
-                    </div>
-                    <div class="stat">
-                        <h3>12+</h3>
-                        <p>Educational Initiatives</p>
-                    </div>
-                    <div class="stat">
-                        <h3>18+</h3>
-                        <p>Research Papers</p>
-                    </div>
-                    <div class="stat">
-                        <h3>8+</h3>
-                        <p>AI Models Developed</p>
-                    </div>
+                    <h3>Mathematician & Data Analyst</h3>
+                    <p>Hello! I'm Humaira Pervaish, a dedicated professional with a Master's degree in Mathematics and over 5 years of experience in data analysis and AI applications. My passion lies in applying mathematical models to drive innovation in education and solve complex real-world problems.</p>
+                    <p>I specialize in statistical analysis, machine learning, and educational technology. My work focuses on developing AI-powered solutions that transform how we approach learning and data interpretation across various sectors including education, healthcare, and technology.</p>
+                    <p>When I'm not analyzing data or building AI models, I enjoy mentoring students in mathematics and contributing to research on educational innovation. I believe that data and AI, when ethically applied, can create powerful positive change in educational systems worldwide.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="expertise">
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Areas of Expertise</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-calculator"></i>
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div class="skills-category">
+                <h3><i class="fas fa-square-root-alt"></i> Mathematics</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Statistical Analysis</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
                     </div>
-                    <h3>Mathematical Modeling</h3>
-                    <p>Developing statistical models and algorithms to solve complex real-world problems in education and beyond.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-chart-bar"></i>
+                <div class="skill-item">
+                    <span class="skill-name">Linear Algebra</span>
+                    <div class="skill-bar">
+                        <div class="skill-level advanced">Advanced</div>
                     </div>
-                    <h3>Data Analysis</h3>
-                    <p>Extracting meaningful insights from large datasets to inform decision-making and strategy development.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-robot"></i>
+                <div class="skill-item">
+                    <span class="skill-name">Calculus & Optimization</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
                     </div>
-                    <h3>Artificial Intelligence</h3>
-                    <p>Building AI systems and machine learning models with applications in educational technology.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-lightbulb"></i>
+                <div class="skill-item">
+                    <span class="skill-name">Probability Theory</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
                     </div>
-                    <h3>Education Innovation</h3>
-                    <p>Designing data-driven approaches to enhance learning outcomes and educational accessibility.</p>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Numerical Methods</span>
+                    <div class="skill-bar">
+                        <div class="skill-level advanced">Advanced</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h3><i class="fas fa-chart-bar"></i> Data Analysis & AI</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Python & R Programming</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Data Visualization</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Machine Learning</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">SQL & Database Management</span>
+                    <div class="skill-bar">
+                        <div class="skill-level advanced">Advanced</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">AI Model Development</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Python (Pandas, NumPy, SciPy)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">R (ggplot2, dplyr, shiny)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level advanced">Advanced</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Tableau & Power BI</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">TensorFlow & PyTorch</span>
+                    <div class="skill-bar">
+                        <div class="skill-level advanced">Advanced</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Jupyter Notebooks</span>
+                    <div class="skill-bar">
+                        <div class="skill-level expert">Expert</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,48 +173,59 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Recent Projects</h2>
-            <div class="projects-grid">
+            
+            <div class="project-grid">
                 <div class="project-card">
-                    <div class="project-image" style="background-color: #e3f2fd;">
-                        <i class="fas fa-graduation-cap"></i>
+                    <div class="project-icon">
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>AI-Powered Learning Platform</h3>
-                        <p>Developed an adaptive learning system that personalizes educational content based on student performance data.</p>
-                        <div class="project-tags">
-                            <span>AI</span>
-                            <span>Education</span>
-                            <span>Machine Learning</span>
-                        </div>
+                    <h3>AI-Powered Learning Analytics</h3>
+                    <p>Developed an adaptive learning system using machine learning algorithms to personalize educational content, improving student engagement by 42%.</p>
+                    <div class="project-tags">
+                        <span>AI</span>
+                        <span>Education</span>
+                        <span>Python</span>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-image" style="background-color: #f3e5f5;">
+                    <div class="project-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>Student Performance Analytics</h3>
-                        <p>Created predictive models to identify at-risk students and recommend intervention strategies.</p>
-                        <div class="project-tags">
-                            <span>Data Analytics</span>
-                            <span>Predictive Modeling</span>
-                            <span>Education</span>
-                        </div>
+                    <h3>Educational Performance Predictor</h3>
+                    <p>Created predictive models to identify at-risk students using logistic regression and neural networks, achieving 89% accuracy in early intervention.</p>
+                    <div class="project-tags">
+                        <span>Predictive Modeling</span>
+                        <span>R</span>
+                        <span>Education</span>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f5e9;">
-                        <i class="fas fa-robot"></i>
+                    <div class="project-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>Automated Grading System</h3>
-                        <p>Built an AI system that automates the grading of mathematical problems with 95% accuracy.</p>
-                        <div class="project-tags">
-                            <span>AI</span>
-                            <span>Automation</span>
-                            <span>Mathematics</span>
-                        </div>
+                    <h3>Student Segmentation Analysis</h3>
+                    <p>Implemented clustering algorithms (K-means, hierarchical) to segment students for personalized learning paths, increasing learning outcomes by 27%.</p>
+                    <div class="project-tags">
+                        <span>Clustering</span>
+                        <span>Data Analysis</span>
+                        <span>Python</span>
                     </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-function"></i>
+                    </div>
+                    <h3>Mathematical Function Visualizer</h3>
+                    <p>Built an interactive tool for visualizing complex mathematical functions, helping students better understand calculus and optimization concepts.</p>
+                    <div class="project-tags">
+                        <span>Mathematics</span>
+                        <span>JavaScript</span>
+                        <span>Visualization</span>
+                    </div>
+                    <button class="demo-btn" id="demoBtn">Launch Demo</button>
                 </div>
             </div>
         </div>
@@ -188,24 +234,18 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
+            <h2 class="section-title">Get In Touch</h2>
+            
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>Interested in collaborating on data science, AI, or education innovation projects?</p>
+                    <h3>Contact Information</h3>
                     <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>humaira.pervaish@example.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Based in Cambridge, MA</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-briefcase"></i>
-                            <span>Available for consulting & research collaborations</span>
-                        </div>
+                        <p><i class="fas fa-envelope"></i> humaira.pervaish@example.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (234) 567-8900</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Cambridge, MA</p>
+                        <p><i class="fas fa-briefcase"></i> Available for consulting & projects</p>
                     </div>
+                    
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -213,15 +253,46 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
+                
+                <form class="contact-form" id="contactForm">
+                    <h3>Send a Message</h3>
+                    <input type="text" placeholder="Your Name" id="name" required>
+                    <input type="email" placeholder="Your Email" id="email" required>
+                    <textarea placeholder="Your Message" rows="5" id="message" required></textarea>
+                    <button type="submit" class="btn-form">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Function Visualizer Demo Modal -->
+    <div class="modal" id="demoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Mathematical Function Visualizer</h2>
+            <div class="function-controls">
+                <label for="functionSelect">Select Function:</label>
+                <select id="functionSelect">
+                    <option value="quadratic">Quadratic: f(x) = x²</option>
+                    <option value="sine">Sine Wave: f(x) = sin(x)</option>
+                    <option value="exponential">Exponential: f(x) = e^x</option>
+                    <option value="logarithmic">Logarithmic: f(x) = log(x)</option>
+                </select>
+                
+                <label for="colorSelect">Graph Color:</label>
+                <select id="colorSelect">
+                    <option value="#5c6bc0">Indigo</option>
+                    <option value="#26a69a">Teal</option>
+                    <option value="#ff7043">Orange</option>
+                    <option value="#ab47bc">Purple</option>
+                </select>
+            </div>
+            <div class="function-canvas">
+                <canvas id="functionCanvas" width="600" height="400"></canvas>
+            </div>
+            <p class="demo-description">This interactive demo visualizes mathematical functions to help students understand complex concepts through visualization.</p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -231,6 +302,6 @@
         </div>
     </footer>
 
-    <script src="humaira.js"></script>
+    <script src="script.js"></script>
 </body>
-                            </html>
+    </html>
