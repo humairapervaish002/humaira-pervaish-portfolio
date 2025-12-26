@@ -1,163 +1,282 @@
-// script.js - White Theme Portfolio JavaScript
+// JavaScript Code for Humaira Pervaish Portfolio
 
-// DOM Elements
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-const contactForm = document.getElementById('contactForm');
-const statNumbers = document.querySelectorAll('.stat-number');
-const skillItems = document.querySelectorAll('.skill-list li');
-
-// Mobile Menu Toggle
-function initMobileMenu() {
-    if (menuToggle && navLinks) {
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            menuToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            }
         });
     }
-}
-
-// Contact Form Submission
-function initContactForm() {
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Form submission
+    const messageForm = document.getElementById('messageForm');
+    if (messageForm) {
+        messageForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            const interest = contactForm.querySelector('#interestSelect').value;
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const subject = this.querySelectorAll('input[type="text"]')[1].value;
+            const message = this.querySelector('textarea').value;
             
             // Simple validation
-            if (!name || !email || !interest) {
-                showMessage('Please fill in all fields before submitting.', 'error');
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields.');
                 return;
             }
             
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
             
-            // Simulate API call
-            setTimeout(() => {
-                // In a real application, you would send this data to a server
-                console.log('Form submitted:', { name, email, interest });
-                
-                // Show success message
-                const interestText = {
-                    'ai-education': 'AI in Education',
-                    'research': 'Research Collaboration',
-                    'workshop': 'Workshop/Consultation',
-                    'other': 'General Inquiry'
-                }[interest] || 'Your inquiry';
-                
-                showMessage(`Thank you ${name}! Your ${interestText} message has been sent. I'll get back to you within 24-48 hours.`, 'success');
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+            // In a real application, you would send this data to a server
+            // For demonstration, we'll just show a success message
+            alert('Thank you for your message, ' + name + '! Humaira will get back to you soon.');
+            this.reset();
         });
     }
-}
-
-// Show message function
-function showMessage(message, type = 'success') {
-    // Remove any existing messages
-    const existingMessage = document.querySelector('.form-message');
-    if (existingMessage) {
-        existingMessage.remove();
+    
+    // Skill Bars Animation
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    function animateSkillBars() {
+        skillBars.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = '0%';
+            
+            // Set the target width after a small delay for animation effect
+            setTimeout(() => {
+                bar.style.width = width + '%';
+            }, 300);
+        });
     }
     
-    // Create message element
-    const messageEl = document.createElement('div');
-    messageEl.className = `form-message form-message-${type}`;
-    messageEl.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-        <span>${message}</span>
-    `;
+    // Animate skill bars when they come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                // Stop observing after animation
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
     
-    // Add styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .form-message {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 10000;
-            animation: slideIn 0.3s ease;
-            max-width: 400px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    // Observe the skills section
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+    
+    // Data Visualization
+    const vizBox = document.getElementById('vizBox');
+    const generateBtn = document.getElementById('generateBtn');
+    const clusterBtn = document.getElementById('clusterBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    
+    let dataPoints = [];
+    let clusters = [];
+    const colors = ['#6a11cb', '#2575fc', '#ff7e5f', '#4CAF50', '#FFC107'];
+    
+    function generateDataPoints() {
+        // Clear existing points
+        vizBox.innerHTML = '';
+        dataPoints = [];
+        clusters = [];
+        
+        // Generate random data points
+        const numPoints = 60;
+        const boxWidth = vizBox.clientWidth;
+        const boxHeight = vizBox.clientHeight;
+        
+        // Create 3 natural clusters
+        for (let i = 0; i < 3; i++) {
+            const clusterCenterX = Math.random() * (boxWidth - 100) + 50;
+            const clusterCenterY = Math.random() * (boxHeight - 100) + 50;
+            
+            for (let j = 0; j < numPoints/3; j++) {
+                // Add some randomness around the cluster center
+                const x = clusterCenterX + (Math.random() - 0.5) * 150;
+                const y = clusterCenterY + (Math.random() - 0.5) * 150;
+                
+                // Ensure points stay within bounds
+                const boundedX = Math.max(10, Math.min(boxWidth - 10, x));
+                const boundedY = Math.max(10, Math.min(boxHeight - 10, y));
+                
+                createDataPoint(boundedX, boundedY);
+            }
+        }
+    }
+    
+    function createDataPoint(x, y) {
+        const point = document.createElement('div');
+        point.className = 'data-point';
+        point.style.left = x + 'px';
+        point.style.top = y + 'px';
+        point.style.backgroundColor = '#6a11cb';
+        
+        vizBox.appendChild(point);
+        dataPoints.push({
+            x, 
+            y, 
+            element: point, 
+            cluster: -1,
+            originalColor: '#6a11cb'
+        });
+    }
+    
+    function clusterData() {
+        // If we already have clusters, remove them
+        document.querySelectorAll('.cluster-center').forEach(el => el.remove());
+        
+        // Simple k-means clustering with 3 clusters
+        const k = 3;
+        clusters = [];
+        
+        // Initialize cluster centers at random positions
+        const boxWidth = vizBox.clientWidth;
+        const boxHeight = vizBox.clientHeight;
+        
+        for (let i = 0; i < k; i++) {
+            clusters.push({
+                x: Math.random() * (boxWidth - 40) + 20,
+                y: Math.random() * (boxHeight - 40) + 20,
+                color: colors[i % colors.length],
+                points: []
+            });
+            
+            // Create cluster center marker
+            createClusterCenter(clusters[i], i);
         }
         
-        .form-message-success {
-            background: #20C997;
-            color: white;
-            border-left: 4px solid #198754;
+        // Run a few iterations of k-means
+        runKMeansIterations(5);
+    }
+    
+    function createClusterCenter(cluster, index) {
+        const center = document.createElement('div');
+        center.className = 'cluster-center';
+        center.style.left = cluster.x + 'px';
+        center.style.top = cluster.y + 'px';
+        center.style.borderColor = cluster.color;
+        center.dataset.index = index;
+        vizBox.appendChild(center);
+    }
+    
+    function runKMeansIterations(iterations) {
+        let currentIteration = 0;
+        
+        function runIteration() {
+            if (currentIteration >= iterations) return;
+            
+            // Assign points to nearest cluster
+            assignPointsToClusters();
+            
+            // Update cluster centers
+            updateClusterCenters();
+            
+            // Color points according to their cluster
+            colorPointsByCluster();
+            
+            currentIteration++;
+            
+            // Run next iteration after delay for animation
+            if (currentIteration < iterations) {
+                setTimeout(runIteration, 800);
+            }
         }
         
-        .form-message-error {
-            background: #E83E8C;
-            color: white;
-            border-left: 4px solid #DC3545;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-    `;
+        runIteration();
+    }
     
-    // Append to body
-    document.head.appendChild(style);
-    document.body.appendChild(messageEl);
+    function assignPointsToClusters() {
+        dataPoints.forEach(point => {
+            let minDist = Infinity;
+            let closestClusterIndex = 0;
+            
+            clusters.forEach((cluster, index) => {
+                const dx = point.x - cluster.x;
+                const dy = point.y - cluster.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestClusterIndex = index;
+                }
+            });
+            
+            point.cluster = closestClusterIndex;
+        });
+    }
     
-    // Remove after 5 seconds
-    setTimeout(() => {
-        messageEl.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (messageEl.parentNode) {
-                messageEl.parentNode.removeChild(messageEl);
+    function updateClusterCenters() {
+        clusters.forEach((cluster, index) => {
+            const clusterPoints = dataPoints.filter(p => p.cluster === index);
+            
+            if (clusterPoints.length > 0) {
+                const avgX = clusterPoints.reduce((sum, p) => sum + p.x, 0) / clusterPoints.length;
+                const avgY = clusterPoints.reduce((sum, p) => sum + p.y, 0) / clusterPoints.length;
+                
+                // Update cluster position
+                cluster.x = avgX;
+                cluster.y = avgY;
+                
+                // Update visual representation
+                const centerElement = document.querySelector(`.cluster-center[data-index="${index}"]`);
+                if (centerElement) {
+                    centerElement.style.left = avgX + 'px';
+                    centerElement.style.top = avgY + 'px';
+                }
             }
-        }, 300);
-    }, 5000);
-}
-
-// Smooth Scrolling
-function initSmoothScroll() {
+        });
+    }
+    
+    function colorPointsByCluster() {
+        dataPoints.forEach(point => {
+            if (point.cluster !== -1) {
+                point.element.style.backgroundColor = clusters[point.cluster].color;
+            }
+        });
+    }
+    
+    function clearVisualization() {
+        vizBox.innerHTML = '';
+        dataPoints = [];
+        clusters = [];
+    }
+    
+    // Event listeners for visualization
+    if (generateBtn) {
+        generateBtn.addEventListener('click', generateDataPoints);
+    }
+    
+    if (clusterBtn) {
+        clusterBtn.addEventListener('click', clusterData);
+    }
+    
+    if (clearBtn) {
+        clearBtn.addEventListener('click', clearVisualization);
+    }
+    
+    // Initialize with some data
+    setTimeout(generateDataPoints, 500);
+    
+    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -167,157 +286,79 @@ function initSmoothScroll() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
                 window.scrollTo({
-                    top: targetPosition,
+                    top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
                 });
             }
         });
     });
-}
-
-// Animated Counter for Stats
-function initCounterAnimation() {
-    if (statNumbers.length === 0) return;
     
-    const animateCounter = (element) => {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                element.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target + (target >= 100 ? '+' : '');
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Regenerate data points on resize to fit new container size
+            if (dataPoints.length > 0) {
+                // Store current state
+                const hasClusters = clusters.length > 0;
+                
+                // Regenerate with similar distribution
+                generateDataPoints();
+                
+                // Reapply clustering if it was applied before
+                if (hasClusters) {
+                    setTimeout(clusterData, 100);
+                }
             }
-        };
-        
-        updateCounter();
-    };
-    
-    // Trigger counter animation when stats section is in view
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                statNumbers.forEach(animateCounter);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    const statsGrid = document.querySelector('.stats-grid');
-    if (statsGrid) {
-        observer.observe(statsGrid);
-    }
-}
-
-// Add scroll effect to header
-function initHeaderScroll() {
-    const header = document.querySelector('header');
-    if (!header) return;
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-        }
+        }, 250);
     });
-}
-
-// Add interactive hover effects to skill items
-function initSkillHoverEffects() {
-    skillItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(10px)';
-            this.style.boxShadow = '0 5px 15px rgba(111, 66, 193, 0.1)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0)';
-            this.style.boxShadow = 'none';
-        });
-    });
-}
-
-// Card hover effect enhancement
-function initCardHoverEffects() {
-    const cards = document.querySelectorAll('.card');
     
-    cards.forEach(card => {
+    // Add interactivity to project cards
+    document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('.expertise-icon, .highlight-icon, .contact-icon');
-            if (icon) {
-                icon.style.transform = 'scale(1.1)';
-                icon.style.transition = 'transform 0.3s ease';
-            }
+            this.style.transform = 'translateY(-10px)';
         });
         
         card.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('.expertise-icon, .highlight-icon, .contact-icon');
-            if (icon) {
-                icon.style.transform = 'scale(1)';
-            }
+            this.style.transform = 'translateY(0)';
         });
     });
-}
-
-// Form input focus effects
-function initFormEffects() {
-    const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select');
     
-    formInputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'translateY(-5px)';
+    // Add animation to passion tags
+    document.querySelectorAll('.tag').forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.2s ease';
         });
         
-        input.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'translateY(0)';
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
         });
     });
-}
-
-// Initialize all functions when DOM is loaded
-function initPortfolio() {
-    console.log('Humaira Pervaish Portfolio - White Theme Initializing...');
     
-    // Initialize all components
-    initMobileMenu();
-    initContactForm();
-    initSmoothScroll();
-    initCounterAnimation();
-    initHeaderScroll();
-    initSkillHoverEffects();
-    initCardHoverEffects();
-    initFormEffects();
+    // Add click animation to buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+    });
     
-    // Add page load animation
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.8s ease';
+    // Initialize skill bars on page load if they're already in view
+    const checkSkillsInView = () => {
+        if (skillsSection) {
+            const rect = skillsSection.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0) {
+                animateSkillBars();
+                window.removeEventListener('scroll', checkSkillsInView);
+            }
+        }
+    };
     
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-    
-    // Console welcome message
-    console.log('%c✨ Humaira Pervaish Portfolio - White Theme ✨', 
-        'color: #6F42C1; font-size: 16px; font-weight: bold;');
-    console.log('%cMathematics Educator • AI Analyst • Innovative Thinker', 
-        'color: #20C997; font-size: 14px;');
-}
-
-// Initialize when DOM is fully loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPortfolio);
-} else {
-    initPortfolio();
-}
+    window.addEventListener('scroll', checkSkillsInView);
+    checkSkillsInView(); // Check on initial load
+});
