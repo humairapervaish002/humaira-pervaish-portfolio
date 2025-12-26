@@ -296,6 +296,7 @@
             border-radius: 4px;
             margin-top: 5px;
             overflow: hidden;
+            width: 100%;
         }
         
         .skill-progress {
@@ -475,8 +476,8 @@
             resize: vertical;
         }
         
-        /* AI Visualization Section */
-        .ai-visualization {
+        /* Data Visualization Section */
+        .viz-section {
             background: white;
             padding: 3rem;
             border-radius: 15px;
@@ -484,32 +485,57 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         
-        .ai-visualization h3 {
+        .viz-section h3 {
             color: var(--dark-color);
             margin-bottom: 1.5rem;
             text-align: center;
             font-size: 1.8rem;
         }
         
-        .ai-description {
+        .viz-description {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 2rem;
             color: #666;
         }
         
-        #aiCanvas {
-            background: #f8f9ff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-top: 1.5rem;
-            max-width: 100%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .viz-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
         }
         
-        .ai-controls {
+        .viz-box {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .data-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            transform: translate(-50%, -50%);
+        }
+        
+        .cluster-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            transform: translate(-50%, -50%);
+        }
+        
+        .viz-controls {
             margin-top: 2rem;
             display: flex;
             justify-content: center;
@@ -517,7 +543,7 @@
             flex-wrap: wrap;
         }
         
-        .ai-controls select, .ai-controls button {
+        .viz-controls select, .viz-controls button {
             padding: 0.7rem 1.5rem;
             border-radius: 30px;
             border: 1px solid var(--secondary-color);
@@ -529,13 +555,13 @@
             transition: all 0.3s;
         }
         
-        .ai-controls button {
+        .viz-controls button {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
         }
         
-        .ai-controls select:hover, .ai-controls button:hover {
+        .viz-controls select:hover, .viz-controls button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(37, 117, 252, 0.2);
         }
@@ -662,7 +688,7 @@
                 font-size: 2rem;
             }
             
-            .innovation-section, .ai-visualization {
+            .innovation-section, .viz-section {
                 padding: 2.5rem 1.5rem;
             }
             
@@ -705,19 +731,4 @@
             <div class="hero-content">
                 <h1>Humaira Pervaish</h1>
                 <div class="hero-subtitle">Mathematician & <span class="highlight">Data Analyst</span></div>
-                <p class="hero-description">Passionate about leveraging data, AI, and mathematical models to drive innovation in education and create impactful solutions for complex problems.</p>
-                <div class="btn-container">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="profile-img">
-                  
+              
