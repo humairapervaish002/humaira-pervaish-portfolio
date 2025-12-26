@@ -1,547 +1,236 @@
-<!-- Contact Form Widget for Your Website -->
-<!-- Copy and paste this entire code anywhere in your HTML -->
-
-<div id="contactWidget" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
-    <!-- Contact Button -->
-    <button id="contactButton" style="
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 15px 25px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.3s ease;
-    ">
-        <i class="fas fa-envelope" style="font-size: 18px;"></i>
-        Contact Me
-    </button>
-
-    <!-- Contact Form (Hidden by default) -->
-    <div id="contactFormContainer" style="
-        display: none;
-        position: absolute;
-        bottom: 70px;
-        right: 0;
-        width: 350px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-        animation: slideUp 0.3s ease;
-    ">
-        <!-- Form Header -->
-        <div style="
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        ">
-            <h3 style="margin: 0; font-size: 1.3rem;">Get In Touch</h3>
-            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9rem;">
-                I'll get back to you soon!
-            </p>
-            <button id="closeForm" style="
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 1.2rem;
-                cursor: pointer;
-                padding: 5px;
-            ">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <!-- Contact Form -->
-        <form id="contactForm" style="padding: 25px;">
-            <!-- Name Field -->
-            <div style="margin-bottom: 20px;">
-                <label style="
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 600;
-                    color: #333;
-                    font-size: 0.9rem;
-                ">
-                    Your Name *
-                </label>
-                <input type="text" 
-                       id="contactName"
-                       required 
-                       style="
-                    width: 100%;
-                    padding: 12px 15px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    transition: border 0.3s;
-                    box-sizing: border-box;
-                "
-                placeholder="Enter your name">
-                <div class="error-message" style="
-                    color: #ff4757;
-                    font-size: 0.85rem;
-                    margin-top: 5px;
-                    display: none;
-                "></div>
-            </div>
-
-            <!-- Email Field -->
-            <div style="margin-bottom: 20px;">
-                <label style="
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 600;
-                    color: #333;
-                    font-size: 0.9rem;
-                ">
-                    Your Email *
-                </label>
-                <input type="email" 
-                       id="contactEmail"
-                       required 
-                       style="
-                    width: 100%;
-                    padding: 12px 15px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    transition: border 0.3s;
-                    box-sizing: border-box;
-                "
-                placeholder="Enter your email">
-                <div class="error-message" style="
-                    color: #ff4757;
-                    font-size: 0.85rem;
-                    margin-top: 5px;
-                    display: none;
-                "></div>
-            </div>
-
-            <!-- Subject Field -->
-            <div style="margin-bottom: 20px;">
-                <label style="
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 600;
-                    color: #333;
-                    font-size: 0.9rem;
-                ">
-                    Subject *
-                </label>
-                <input type="text" 
-                       id="contactSubject"
-                       required 
-                       style="
-                    width: 100%;
-                    padding: 12px 15px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    transition: border 0.3s;
-                    box-sizing: border-box;
-                "
-                placeholder="What is this regarding?">
-                <div class="error-message" style="
-                    color: #ff4757;
-                    font-size: 0.85rem;
-                    margin-top: 5px;
-                    display: none;
-                "></div>
-            </div>
-
-            <!-- Message Field -->
-            <div style="margin-bottom: 25px;">
-                <label style="
-                    display: block;
-                    margin-bottom: 8px;
-                    font-weight: 600;
-                    color: #333;
-                    font-size: 0.9rem;
-                ">
-                    Your Message *
-                </label>
-                <textarea id="contactMessage" 
-                          required 
-                          rows="4"
-                          style="
-                    width: 100%;
-                    padding: 12px 15px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    resize: vertical;
-                    transition: border 0.3s;
-                    box-sizing: border-box;
-                    font-family: inherit;
-                "
-                placeholder="Type your message here..."></textarea>
-                <div class="error-message" style="
-                    color: #ff4757;
-                    font-size: 0.85rem;
-                    margin-top: 5px;
-                    display: none;
-                "></div>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" 
-                    id="submitBtn"
-                    style="
-                width: 100%;
-                background: linear-gradient(135deg, #6a11cb, #2575fc);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                padding: 14px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-            ">
-                <i class="fas fa-paper-plane"></i>
-                Send Message
-            </button>
-
-            <!-- Loading Spinner -->
-            <div id="loadingSpinner" style="
-                display: none;
-                text-align: center;
-                margin-top: 15px;
-            ">
-                <div style="
-                    display: inline-block;
-                    width: 30px;
-                    height: 30px;
-                    border: 3px solid #f3f3f3;
-                    border-top: 3px solid #6a11cb;
-                    border-radius: 50%;
-                    animation: spin 1s linear infinite;
-                "></div>
-                <p style="margin-top: 10px; color: #666;">Sending message...</p>
-            </div>
-
-            <!-- Success Message -->
-            <div id="successMessage" style="
-                display: none;
-                text-align: center;
-                padding: 20px;
-                background: #d4edda;
-                color: #155724;
-                border-radius: 8px;
-                margin-top: 15px;
-            ">
-                <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4 style="margin: 10px 0;">Message Sent!</h4>
-                <p style="margin: 0;">Thank you for your message. I'll get back to you soon!</p>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorMessage" style="
-                display: none;
-                text-align: center;
-                padding: 20px;
-                background: #f8d7da;
-                color: #721c24;
-                border-radius: 8px;
-                margin-top: 15px;
-            ">
-                <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4 style="margin: 10px 0;">Oops! Something went wrong</h4>
-                <p style="margin: 0;">Please try again or contact me directly via email.</p>
-            </div>
-        </form>
-
-        <!-- Footer -->
-        <div style="
-            background: #f8f9ff;
-            padding: 15px 25px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #666;
-        ">
-            <p style="margin: 0 0 10px 0;">
-                <i class="fas fa-clock"></i> Response time: Usually within 24 hours
-            </p>
-            <div style="display: flex; justify-content: center; gap: 15px;">
-                <a href="mailto:your.email@example.com" style="
-                    color: #6a11cb;
-                    text-decoration: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                ">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </a>
-                <a href="tel:+1234567890" style="
-                    color: #6a11cb;
-                    text-decoration: none;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                ">
-                    <i class="fas fa-phone"></i>
-                    <span>Call</span>
-                </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humaira Pervaish | Mathematician & Data Analyst</title>
+    <link rel="stylesheet" href="humaira.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Humaira<span>Pervaish</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </div>
-</div>
+    </nav>
 
-<!-- Font Awesome Icons (if not already in your site) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Humaira Pervaish</h1>
+                <h2>Mathematician & Data Analyst</h2>
+                <p class="tagline">Passionate about data science, AI, and innovation in education</p>
+                <p class="description">Leveraging mathematical models and data analytics to drive educational transformation and AI innovation.</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-calculator"></i>
+                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<style>
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Humaira</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Humaira Pervaish is a passionate mathematician and data analyst with a strong focus on applying data science and AI to transform educational systems.</p>
+                    <p>With a background in advanced mathematics, she bridges the gap between theoretical models and practical applications in data analysis and artificial intelligence.</p>
+                    <p>Her work is driven by a belief that data-informed strategies can revolutionize how we approach education, making it more accessible, personalized, and effective.</p>
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <i class="fas fa-university"></i>
+                            <span>M.Sc. in Applied Mathematics</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-database"></i>
+                            <span>5+ Years in Data Analytics</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-brain"></i>
+                            <span>AI & Machine Learning Specialist</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Education Innovation Advocate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>24+</h3>
+                        <p>Data Projects</p>
+                    </div>
+                    <div class="stat">
+                        <h3>12+</h3>
+                        <p>Educational Initiatives</p>
+                    </div>
+                    <div class="stat">
+                        <h3>18+</h3>
+                        <p>Research Papers</p>
+                    </div>
+                    <div class="stat">
+                        <h3>8+</h3>
+                        <p>AI Models Developed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise">
+        <div class="container">
+            <h2 class="section-title">Areas of Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Mathematical Modeling</h3>
+                    <p>Developing statistical models and algorithms to solve complex real-world problems in education and beyond.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data Analysis</h3>
+                    <p>Extracting meaningful insights from large datasets to inform decision-making and strategy development.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Artificial Intelligence</h3>
+                    <p>Building AI systems and machine learning models with applications in educational technology.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Education Innovation</h3>
+                    <p>Designing data-driven approaches to enhance learning outcomes and educational accessibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    /* Input focus styles */
-    #contactForm input:focus,
-    #contactForm textarea:focus {
-        outline: none;
-        border-color: #6a11cb;
-        box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.1);
-    }
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Recent Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-color: #e3f2fd;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI-Powered Learning Platform</h3>
+                        <p>Developed an adaptive learning system that personalizes educational content based on student performance data.</p>
+                        <div class="project-tags">
+                            <span>AI</span>
+                            <span>Education</span>
+                            <span>Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-color: #f3e5f5;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Student Performance Analytics</h3>
+                        <p>Created predictive models to identify at-risk students and recommend intervention strategies.</p>
+                        <div class="project-tags">
+                            <span>Data Analytics</span>
+                            <span>Predictive Modeling</span>
+                            <span>Education</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-color: #e8f5e9;">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Automated Grading System</h3>
+                        <p>Built an AI system that automates the grading of mathematical problems with 95% accuracy.</p>
+                        <div class="project-tags">
+                            <span>AI</span>
+                            <span>Automation</span>
+                            <span>Mathematics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    /* Button hover effects */
-    #contactButton:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
-    }
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Interested in collaborating on data science, AI, or education innovation projects?</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>humaira.pervaish@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Based in Cambridge, MA</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Available for consulting & research collaborations</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-researchgate"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-    #submitBtn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
-    }
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Humaira Pervaish. All rights reserved.</p>
+            <p>Mathematician | Data Analyst | AI Enthusiast | Education Innovator</p>
+        </div>
+    </footer>
 
-    #submitBtn:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-        transform: none !important;
-        box-shadow: none !important;
-    }
-
-    /* Error state for inputs */
-    .error {
-        border-color: #ff4757 !important;
-    }
-</style>
-
-<script>
-    // Wait for the page to load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get DOM elements
-        const contactButton = document.getElementById('contactButton');
-        const contactFormContainer = document.getElementById('contactFormContainer');
-        const closeForm = document.getElementById('closeForm');
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        
-        // Toggle form visibility
-        contactButton.addEventListener('click', function() {
-            const isVisible = contactFormContainer.style.display === 'block';
-            contactFormContainer.style.display = isVisible ? 'none' : 'block';
-            contactButton.innerHTML = isVisible ? 
-                '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me' : 
-                '<i class="fas fa-times" style="font-size: 18px;"></i> Close';
-        });
-        
-        // Close form when X is clicked
-        closeForm.addEventListener('click', function() {
-            contactFormContainer.style.display = 'none';
-            contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
-        });
-        
-        // Close form when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideForm = contactFormContainer.contains(event.target);
-            const isClickOnButton = contactButton.contains(event.target);
-            
-            if (!isClickInsideForm && !isClickOnButton && contactFormContainer.style.display === 'block') {
-                contactFormContainer.style.display = 'none';
-                contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
-            }
-        });
-        
-        // Form validation
-        function validateField(input, errorElement) {
-            const value = input.value.trim();
-            let isValid = true;
-            let errorMessage = '';
-            
-            // Clear previous error
-            input.classList.remove('error');
-            errorElement.style.display = 'none';
-            
-            // Check if empty
-            if (!value) {
-                isValid = false;
-                errorMessage = 'This field is required';
-            }
-            
-            // Email validation
-            if (input.type === 'email' && value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid email address';
-                }
-            }
-            
-            // Show error if invalid
-            if (!isValid) {
-                input.classList.add('error');
-                errorElement.textContent = errorMessage;
-                errorElement.style.display = 'block';
-            }
-            
-            return isValid;
-        }
-        
-        // Real-time validation
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            const errorElement = input.parentElement.querySelector('.error-message');
-            
-            // Validate on blur
-            input.addEventListener('blur', () => {
-                validateField(input, errorElement);
-            });
-            
-            // Clear error on focus
-            input.addEventListener('focus', () => {
-                input.classList.remove('error');
-                errorElement.style.display = 'none';
-            });
-        });
-        
-        // Form submission
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Validate all fields
-            let isFormValid = true;
-            const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-            
-            formInputs.forEach(input => {
-                const errorElement = input.parentElement.querySelector('.error-message');
-                if (!validateField(input, errorElement)) {
-                    isFormValid = false;
-                }
-            });
-            
-            if (!isFormValid) {
-                return;
-            }
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('contactName').value.trim(),
-                email: document.getElementById('contactEmail').value.trim(),
-                subject: document.getElementById('contactSubject').value.trim(),
-                message: document.getElementById('contactMessage').value.trim(),
-                timestamp: new Date().toISOString()
-            };
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            loadingSpinner.style.display = 'block';
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            try {
-                // In a real application, you would send this data to your server
-                // For demonstration, we'll simulate an API call
-                await simulateAPICall(formData);
-                
-                // Show success message
-                loadingSpinner.style.display = 'none';
-                successMessage.style.display = 'block';
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-                
-                // Reset form after 3 seconds
-                setTimeout(() => {
-                    contactForm.reset();
-                    successMessage.style.display = 'none';
-                    submitBtn.disabled = false;
-                    
-                    // Optionally close the form
-                    // contactFormContainer.style.display = 'none';
-                    // contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
-                }, 3000);
-                
-            } catch (error) {
-                // Show error message
-                loadingSpinner.style.display = 'none';
-                errorMessage.style.display = 'block';
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-                submitBtn.disabled = false;
-                
-                // Hide error after 5 seconds
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
-            }
-        });
-        
-        // Simulate API call (replace with actual API call in production)
-        function simulateAPICall(data) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simulate 90% success rate
-                    const isSuccess = Math.random() > 0.1;
-                    
-                    if (isSuccess) {
-                        // In a real application, you would:
-                        // 1. Send data to your backend
-                        // 2. Save to database
-                        // 3. Send email notification
-                        // 4. Return success response
-                        
-                        console.log('Form submitted:', data);
-                        resolve({ success: true, message: 'Message sent successfully!' });
-                    } else {
-                        reject(new Error('Network error. Please try again.'));
-                    }
-                }, 1500);
-            });
-        }
-        
-        // Alternative: Send form data via email (using mailto)
-        // Uncomment this function if you want to use mailto instead of AJAX
-        /*
-        function sendViaEmail(formData) {
-            const subject = encodeURIComponent(formData.subject);
-            const body
+    <script src="humaira.js"></script>
+</body>
+                            </html>
