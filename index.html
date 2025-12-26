@@ -1,617 +1,547 @@
+<!-- Contact Form Widget for Your Website -->
+<!-- Copy and paste this entire code anywhere in your HTML -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humaira Pervaish - Mathematician & Data Analyst</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Raleway', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, #2E3192, #1BFFFF);
+<div id="contactWidget" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
+    <!-- Contact Button -->
+    <button id="contactButton" style="
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    ">
+        <i class="fas fa-envelope" style="font-size: 18px;"></i>
+        Contact Me
+    </button>
+
+    <!-- Contact Form (Hidden by default) -->
+    <div id="contactFormContainer" style="
+        display: none;
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        width: 350px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        animation: slideUp 0.3s ease;
+    ">
+        <!-- Form Header -->
+        <div style="
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .logo span {
-            color: #FF6B6B;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #FF6B6B;
-        }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(46, 49, 146, 0.8), rgba(27, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 6rem 0;
+            padding: 20px;
             text-align: center;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .highlight {
-            color: #FF6B6B;
-            font-weight: 700;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: #FF6B6B;
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: #ff5252;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Sections */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #2E3192;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: #FF6B6B;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* About Section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        
-        .profile-img {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .profile-img img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 50%;
-            border: 8px solid #1BFFFF;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-text {
-            flex: 2;
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #2E3192;
-        }
-        
-        .passion-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1.5rem;
-        }
-        
-        .tag {
-            background: linear-gradient(135deg, #2E3192, #1BFFFF);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-10px);
-        }
-        
-        .skill-category h3 {
-            color: #2E3192;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .skill-category h3 i {
-            color: #1BFFFF;
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .skill-level {
-            color: #FF6B6B;
-            font-weight: 600;
-        }
-        
-        /* Projects Section */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-img {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .project-info {
-            padding: 1.5rem;
-        }
-        
-        .project-info h3 {
-            color: #2E3192;
-            margin-bottom: 0.8rem;
-        }
-        
-        /* Education Innovation Section */
-        .education-section {
-            background: linear-gradient(135deg, #2E3192, #1BFFFF);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-            border-radius: 15px;
-            margin-top: 3rem;
-        }
-        
-        .education-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .education-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #FF6B6B;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: white;
-            font-weight: 500;
-        }
-        
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-        
-        .contact-info {
-            background: #2E3192;
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 1.5rem;
-            color: #FF6B6B;
-        }
-        
-        .contact-details {
-            list-style: none;
-        }
-        
-        .contact-details li {
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .contact-details i {
-            color: #FF6B6B;
-            width: 24px;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Raleway', sans-serif;
-        }
-        
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        /* AI Visualization Section */
-        .ai-viz {
-            background: #f0f7ff;
-            padding: 3rem;
-            border-radius: 10px;
-            margin-top: 3rem;
-            text-align: center;
-        }
-        
-        .ai-viz h3 {
-            color: #2E3192;
-            margin-bottom: 1.5rem;
-        }
-        
-        #dataCanvas {
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            margin-top: 1.5rem;
-            max-width: 100%;
-        }
-        
-        .viz-controls {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2E3192;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #FF6B6B;
-        }
-        
-        .copyright {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
+        ">
+            <h3 style="margin: 0; font-size: 1.3rem;">Get In Touch</h3>
+            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9rem;">
+                I'll get back to you soon!
+            </p>
+            <button id="closeForm" style="
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 5px;
+            ">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Contact Form -->
+        <form id="contactForm" style="padding: 25px;">
+            <!-- Name Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 0.9rem;
+                ">
+                    Your Name *
+                </label>
+                <input type="text" 
+                       id="contactName"
+                       required 
+                       style="
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    transition: border 0.3s;
+                    box-sizing: border-box;
+                "
+                placeholder="Enter your name">
+                <div class="error-message" style="
+                    color: #ff4757;
+                    font-size: 0.85rem;
+                    margin-top: 5px;
+                    display: none;
+                "></div>
+            </div>
+
+            <!-- Email Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 0.9rem;
+                ">
+                    Your Email *
+                </label>
+                <input type="email" 
+                       id="contactEmail"
+                       required 
+                       style="
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    transition: border 0.3s;
+                    box-sizing: border-box;
+                "
+                placeholder="Enter your email">
+                <div class="error-message" style="
+                    color: #ff4757;
+                    font-size: 0.85rem;
+                    margin-top: 5px;
+                    display: none;
+                "></div>
+            </div>
+
+            <!-- Subject Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 0.9rem;
+                ">
+                    Subject *
+                </label>
+                <input type="text" 
+                       id="contactSubject"
+                       required 
+                       style="
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    transition: border 0.3s;
+                    box-sizing: border-box;
+                "
+                placeholder="What is this regarding?">
+                <div class="error-message" style="
+                    color: #ff4757;
+                    font-size: 0.85rem;
+                    margin-top: 5px;
+                    display: none;
+                "></div>
+            </div>
+
+            <!-- Message Field -->
+            <div style="margin-bottom: 25px;">
+                <label style="
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 0.9rem;
+                ">
+                    Your Message *
+                </label>
+                <textarea id="contactMessage" 
+                          required 
+                          rows="4"
+                          style="
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    resize: vertical;
+                    transition: border 0.3s;
+                    box-sizing: border-box;
+                    font-family: inherit;
+                "
+                placeholder="Type your message here..."></textarea>
+                <div class="error-message" style="
+                    color: #ff4757;
+                    font-size: 0.85rem;
+                    margin-top: 5px;
+                    display: none;
+                "></div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                    id="submitBtn"
+                    style="
                 width: 100%;
-                flex-direction: column;
-                background: #2E3192;
-                padding: 2rem;
-                transition: left 0.3s;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Math Visualization */
-        .math-viz {
-            background: #f0f7ff;
-            padding: 3rem;
-            border-radius: 10px;
-            margin-top: 3rem;
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 14px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            ">
+                <i class="fas fa-paper-plane"></i>
+                Send Message
+            </button>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" style="
+                display: none;
+                text-align: center;
+                margin-top: 15px;
+            ">
+                <div style="
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    border: 3px solid #f3f3f3;
+                    border-top: 3px solid #6a11cb;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                "></div>
+                <p style="margin-top: 10px; color: #666;">Sending message...</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" style="
+                display: none;
+                text-align: center;
+                padding: 20px;
+                background: #d4edda;
+                color: #155724;
+                border-radius: 8px;
+                margin-top: 15px;
+            ">
+                <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4 style="margin: 10px 0;">Message Sent!</h4>
+                <p style="margin: 0;">Thank you for your message. I'll get back to you soon!</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" style="
+                display: none;
+                text-align: center;
+                padding: 20px;
+                background: #f8d7da;
+                color: #721c24;
+                border-radius: 8px;
+                margin-top: 15px;
+            ">
+                <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4 style="margin: 10px 0;">Oops! Something went wrong</h4>
+                <p style="margin: 0;">Please try again or contact me directly via email.</p>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <div style="
+            background: #f8f9ff;
+            padding: 15px 25px;
+            border-top: 1px solid #eee;
             text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        ">
+            <p style="margin: 0 0 10px 0;">
+                <i class="fas fa-clock"></i> Response time: Usually within 24 hours
+            </p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <a href="mailto:your.email@example.com" style="
+                    color: #6a11cb;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                ">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="tel:+1234567890" style="
+                    color: #6a11cb;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                ">
+                    <i class="fas fa-phone"></i>
+                    <span>Call</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome Icons (if not already in your site) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Input focus styles */
+    #contactForm input:focus,
+    #contactForm textarea:focus {
+        outline: none;
+        border-color: #6a11cb;
+        box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.1);
+    }
+
+    /* Button hover effects */
+    #contactButton:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+    }
+
+    #submitBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+    }
+
+    #submitBtn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Error state for inputs */
+    .error {
+        border-color: #ff4757 !important;
+    }
+</style>
+
+<script>
+    // Wait for the page to load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get DOM elements
+        const contactButton = document.getElementById('contactButton');
+        const contactFormContainer = document.getElementById('contactFormContainer');
+        const closeForm = document.getElementById('closeForm');
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Toggle form visibility
+        contactButton.addEventListener('click', function() {
+            const isVisible = contactFormContainer.style.display === 'block';
+            contactFormContainer.style.display = isVisible ? 'none' : 'block';
+            contactButton.innerHTML = isVisible ? 
+                '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me' : 
+                '<i class="fas fa-times" style="font-size: 18px;"></i> Close';
+        });
+        
+        // Close form when X is clicked
+        closeForm.addEventListener('click', function() {
+            contactFormContainer.style.display = 'none';
+            contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
+        });
+        
+        // Close form when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideForm = contactFormContainer.contains(event.target);
+            const isClickOnButton = contactButton.contains(event.target);
+            
+            if (!isClickInsideForm && !isClickOnButton && contactFormContainer.style.display === 'block') {
+                contactFormContainer.style.display = 'none';
+                contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
+            }
+        });
+        
+        // Form validation
+        function validateField(input, errorElement) {
+            const value = input.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Clear previous error
+            input.classList.remove('error');
+            errorElement.style.display = 'none';
+            
+            // Check if empty
+            if (!value) {
+                isValid = false;
+                errorMessage = 'This field is required';
+            }
+            
+            // Email validation
+            if (input.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid email address';
+                }
+            }
+            
+            // Show error if invalid
+            if (!isValid) {
+                input.classList.add('error');
+                errorElement.textContent = errorMessage;
+                errorElement.style.display = 'block';
+            }
+            
+            return isValid;
         }
         
-        .math-viz h3 {
-            color: #2E3192;
-            margin-bottom: 1.5rem;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Humaira<span>Pervaish</span></div>
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Humaira Pervaish</h1>
-            <p>A passionate <span class="highlight">Mathematician</span> and <span class="highlight">Data Analyst</span> with expertise in AI, data visualization, and innovation in education. Transforming data into actionable insights for educational advancement.</p>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="profile-img">
-                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=634&q=80" alt="Humaira Pervaish">
-                </div>
-                <div class="about-text">
-                    <h3>Mathematician, Data Analyst & Education Innovator</h3>
-                    <p>Hello! I'm Humaira Pervaish, a dedicated mathematician and data analyst with a Master's degree in Mathematics and over 6 years of experience in data science. My passion lies at the intersection of data analytics, artificial intelligence, and educational innovation.</p>
-                    <p>I specialize in applying mathematical models and AI algorithms to solve complex educational challenges. My work focuses on developing data-driven strategies to enhance learning outcomes, personalize education, and make quality learning accessible to all.</p>
-                    <p>Currently, I'm researching adaptive learning systems and AI-powered educational tools that can revolutionize how we teach and learn. I believe that data and AI have the power to transform education and create more equitable learning opportunities.</p>
-                    <div class="passion-tags">
-                        <div class="tag">Mathematics</div>
-                        <div class="tag">Data Analysis</div>
-                        <div class="tag">AI & Machine Learning</div>
-                        <div class="tag">Educational Technology</div>
-                        <div class="tag">Data Visualization</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: #f5f7ff;">
-        <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3><i class="fas fa-calculator"></i> Mathematics</h3>
-                    <ul class="skill-list">
-                        <li>Statistical Analysis <span class="skill-level">Expert</span></li>
-                        <li>Linear Algebra <span class="skill-level">Advanced</span></li>
-                        <li>Calculus & Optimization <span class="skill-level">Advanced</span></li>
-                        <li>Probability Theory <span class="skill-level">Expert</span></li>
-                        <li>Numerical Methods <span class="skill-level">Advanced</span></li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-chart-bar"></i> Data Analysis & AI</h3>
-                    <ul class="skill-list">
-                        <li>Python & R Programming <span class="skill-level">Expert</span></li>
-                        <li>Machine Learning <span class="skill-level">Advanced</span></li>
-                        <li>Data Visualization <span class="skill-level">Expert</span></li>
-                        <li>SQL & Database Management <span class="skill-level">Advanced</span></li>
-                        <li>AI Algorithm Development <span class="skill-level">Expert</span></li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-graduation-cap"></i> Education Technology</h3>
-                    <ul class="skill-list">
-                        <li>Learning Analytics <span class="skill-level">Expert</span></li>
-                        <li>EdTech Solution Design <span class="skill-level">Advanced</span></li>
-                        <li>Educational Data Mining <span class="skill-level">Advanced</span></li>
-                        <li>Adaptive Learning Systems <span class="skill-level">Expert</span></li>
-                        <li>Educational Research <span class="skill-level">Advanced</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Recent Projects</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="project-info">
-                        <h3>AI-Powered Adaptive Learning Platform</h3>
-                        <p>Developed an intelligent learning system that adapts content based on student performance, improving learning outcomes by 42% through personalized pathways.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="project-info">
-                        <h3>Predictive Analytics for Student Success</h3>
-                        <p>Created machine learning models to identify at-risk students with 92% accuracy, enabling early intervention and improving retention rates by 28%.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="project-info">
-                        <h3>Educational Data Visualization Dashboard</h3>
-                        <p>Built an interactive dashboard for schools to visualize educational metrics, helping administrators make data-informed decisions about resource allocation.</p>
-                    </div>
-                </div>
-            </div>
+        // Real-time validation
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            const errorElement = input.parentElement.querySelector('.error-message');
             
-            <!-- Education Innovation Section -->
-            <div class="education-section">
-                <div class="container">
-                    <div class="education-content">
-                        <h3>Driving Innovation in Education</h3>
-                        <p>My passion is transforming education through data and AI. I work with educational inst
+            // Validate on blur
+            input.addEventListener('blur', () => {
+                validateField(input, errorElement);
+            });
+            
+            // Clear error on focus
+            input.addEventListener('focus', () => {
+                input.classList.remove('error');
+                errorElement.style.display = 'none';
+            });
+        });
+        
+        // Form submission
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate all fields
+            let isFormValid = true;
+            const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+            
+            formInputs.forEach(input => {
+                const errorElement = input.parentElement.querySelector('.error-message');
+                if (!validateField(input, errorElement)) {
+                    isFormValid = false;
+                }
+            });
+            
+            if (!isFormValid) {
+                return;
+            }
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value.trim(),
+                email: document.getElementById('contactEmail').value.trim(),
+                subject: document.getElementById('contactSubject').value.trim(),
+                message: document.getElementById('contactMessage').value.trim(),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            loadingSpinner.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            try {
+                // In a real application, you would send this data to your server
+                // For demonstration, we'll simulate an API call
+                await simulateAPICall(formData);
+                
+                // Show success message
+                loadingSpinner.style.display = 'none';
+                successMessage.style.display = 'block';
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    contactForm.reset();
+                    successMessage.style.display = 'none';
+                    submitBtn.disabled = false;
+                    
+                    // Optionally close the form
+                    // contactFormContainer.style.display = 'none';
+                    // contactButton.innerHTML = '<i class="fas fa-envelope" style="font-size: 18px;"></i> Contact Me';
+                }, 3000);
+                
+            } catch (error) {
+                // Show error message
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                submitBtn.disabled = false;
+                
+                // Hide error after 5 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+        
+        // Simulate API call (replace with actual API call in production)
+        function simulateAPICall(data) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simulate 90% success rate
+                    const isSuccess = Math.random() > 0.1;
+                    
+                    if (isSuccess) {
+                        // In a real application, you would:
+                        // 1. Send data to your backend
+                        // 2. Save to database
+                        // 3. Send email notification
+                        // 4. Return success response
+                        
+                        console.log('Form submitted:', data);
+                        resolve({ success: true, message: 'Message sent successfully!' });
+                    } else {
+                        reject(new Error('Network error. Please try again.'));
+                    }
+                }, 1500);
+            });
+        }
+        
+        // Alternative: Send form data via email (using mailto)
+        // Uncomment this function if you want to use mailto instead of AJAX
+        /*
+        function sendViaEmail(formData) {
+            const subject = encodeURIComponent(formData.subject);
+            const body
