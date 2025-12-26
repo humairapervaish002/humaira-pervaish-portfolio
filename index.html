@@ -3,26 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humaira Pervaish | Math Educator & AI Analyst</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Humaira Pervaish - Mathematician & Data Analyst</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #ff7e5f;
+            --light-color: #f8f9ff;
+            --dark-color: #2d3047;
+            --success-color: #4CAF50;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(106, 17, 203, 0.85), rgba(37, 117, 252, 0.85)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.3);
+        }
+        
+        .btn:hover {
+            background: #ff6b4a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .profile-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .profile-img img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .passion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .skill-category h3 i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .project-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-info {
+            padding: 1.8rem;
+        }
+        
+        .project-info h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: #f0f4ff;
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Education Innovation Section */
+        .innovation-section {
+            background: linear-gradient(135deg, #f8f9ff, #eef2ff);
+            border-radius: 15px;
+            padding: 4rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .innovation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .innovation-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .innovation-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3.5rem;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.2);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.8rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .contact-details {
+            list-style: none;
+        }
+        
+        .contact-details li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-details i {
+            color: var(--accent-color);
+            width: 24px;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            transition: border 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.1);
+        }
+        
+        .contact-form textarea {
+            height: 160px;
+            resize: vertical;
+        }
+        
+        /* AI Visualization Section */
+        .ai-visualization {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .ai-visualization h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .ai-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #666;
+        }
+        
+        #aiCanvas {
+            background: #f8f9ff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 1.5rem;
+            max-width: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .ai-controls {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .ai-controls select, .ai-controls button {
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            border: 1px solid var(--secondary-color);
+            background: white;
+            color: var(--secondary-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .ai-controls button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+        }
+        
+        .ai-controls select:hover, .ai-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-tagline {
+            max-width: 400px;
+            color: #ccc;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .passion-tags {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background: var(--dark-color);
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .innovation-section, .ai-visualization {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Animation for skill bars */
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header & Navigation -->
     <header>
         <div class="container">
-            <nav class="navbar">
-                <div class="logo">Humaira Pervaish</div>
+            <nav>
+                <div class="logo">Humaira<span>Pervaish</span></div>
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#innovation">Innovation</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -30,21 +700,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="tagline">
-                    <i class="fas fa-brain"></i> Math Educator & AI Analyst
-                </div>
-                <h1>Where Mathematics Meets Artificial Intelligence</h1>
-                <p>Bridging analytical thinking with cutting-edge AI innovation to create transformative educational experiences and data-driven solutions.</p>
-                <div class="cta-buttons">
-                    <a href="#innovation" class="btn btn-primary">
-                        <i class="fas fa-lightbulb"></i> Explore Innovations
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-comments"></i> Collaborate
-                    </a>
+                <h1>Humaira Pervaish</h1>
+                <div class="hero-subtitle">Mathematician & <span class="highlight">Data Analyst</span></div>
+                <p class="hero-description">Passionate about leveraging data, AI, and mathematical models to drive innovation in education and create impactful solutions for complex problems.</p>
+                <div class="btn-container">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -53,294 +717,7 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">ABOUT ME</h2>
-                <p class="section-subtitle">Passionate Educator • AI Enthusiast • Innovative Thinker</p>
-            </div>
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <p>I am Humaira Pervaish, a dedicated Mathematics Educator with a deep fascination for Artificial Intelligence and Data Analytics. My journey combines the logical rigor of mathematics with the transformative potential of AI to solve complex problems and inspire future innovators.</p>
-                    <p>I believe that mathematical thinking provides the foundational framework for understanding and advancing AI technologies. Through education and practical application, I aim to demystify AI and make it accessible to learners at all levels.</p>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <div>
-                            <h4>Educational Innovation</h4>
-                            <p>Developing AI-integrated curriculum for modern mathematics education</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div>
-                            <h4>AI Research</h4>
-                            <p>Exploring machine learning applications in educational analytics</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div>
-                            <h4>Data Analytics</h4>
-                            <p>Transforming educational data into actionable insights</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div>
-                            <h4>Student Empowerment</h4>
-                            <p>Equipping learners with AI literacy and mathematical thinking</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Section -->
-    <section id="expertise" class="section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">MY EXPERTISE</h2>
-                <p class="section-subtitle">Integrating mathematical pedagogy with artificial intelligence</p>
-            </div>
-            <div class="expertise-grid">
-                <div class="expertise-card card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-square-root-alt"></i>
-                    </div>
-                    <h3>Mathematics Education</h3>
-                    <p>Advanced curriculum design, pedagogical strategies, and innovative teaching methodologies that make complex mathematical concepts accessible and engaging for diverse learners.</p>
-                </div>
-                <div class="expertise-card card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI & Machine Learning</h3>
-                    <p>Practical applications of artificial intelligence in education, predictive analytics, natural language processing, and developing intelligent tutoring systems.</p>
-                </div>
-                <div class="expertise-card card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Educational Analytics</h3>
-                    <p>Data-driven insights into learning patterns, performance metrics, and educational outcomes using statistical analysis and visualization techniques.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">TECHNICAL SKILLS</h2>
-                <p class="section-subtitle">Bridging traditional mathematics with modern technology</p>
-            </div>
-            <div class="skills-container">
-                <div class="skill-category card">
-                    <div class="skill-header">
-                        <i class="fas fa-calculator"></i>
-                        <h3>Mathematics & Pedagogy</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>Advanced Mathematical Concepts</li>
-                        <li>Curriculum Development</li>
-                        <li>Educational Psychology</li>
-                        <li>Assessment Design</li>
-                        <li>Differentiated Instruction</li>
-                    </ul>
-                </div>
-                <div class="skill-category card">
-                    <div class="skill-header">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>AI & Data Science</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>Python & R Programming</li>
-                        <li>Machine Learning Algorithms</li>
-                        <li>Data Visualization</li>
-                        <li>Statistical Analysis</li>
-                        <li>Predictive Modeling</li>
-                    </ul>
-                </div>
-                <div class="skill-category card">
-                    <div class="skill-header">
-                        <i class="fas fa-tools"></i>
-                        <h3>Educational Technology</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>Learning Management Systems</li>
-                        <li>Interactive Learning Tools</li>
-                        <li>Data Analytics Platforms</li>
-                        <li>AI Educational Software</li>
-                        <li>Digital Assessment Tools</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Innovation Section -->
-    <section id="innovation" class="section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">AI INNOVATION</h2>
-                <p class="section-subtitle">Transforming education through artificial intelligence</p>
-            </div>
-            <div class="innovation-content">
-                <div class="innovation-text card">
-                    <h3>The Future of Learning</h3>
-                    <p>I am passionate about leveraging AI to create personalized learning experiences that adapt to individual student needs, pace, and learning styles. My research focuses on developing intelligent systems that enhance mathematical understanding and problem-solving skills.</p>
-                    <p>By combining mathematical rigor with AI capabilities, we can create educational tools that not only teach content but also develop critical thinking, creativity, and analytical skills essential for the AI-driven future.</p>
-                </div>
-                <div class="innovation-points card">
-                    <h3>Research Focus Areas</h3>
-                    <div class="innovation-point">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Adaptive Learning Algorithms</span>
-                    </div>
-                    <div class="innovation-point">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Intelligent Tutoring Systems</span>
-                    </div>
-                    <div class="innovation-point">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Learning Analytics Dashboards</span>
-                    </div>
-                    <div class="innovation-point">
-                        <i class="fas fa-check-circle"></i>
-                        <span>AI-Powered Assessment Tools</span>
-                    </div>
-                    <div class="innovation-point">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Mathematical Problem-Solving AI</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="500">0</div>
-                    <div class="stat-label">Students Empowered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="98">0</div>
-                    <div class="stat-label">Satisfaction Rate</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="15">0</div>
-                    <div class="stat-label">AI Projects</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="8">0</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">LET'S CONNECT</h2>
-                <p class="section-subtitle">Interested in AI education, research collaboration, or innovative projects?</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <p>humaira.pervaish@example.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item card">
-                        <div class="contact-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div>
-                            <h3>Education Focus</h3>
-                            <p>Mathematics & AI Integration</p>
-                        </div>
-                    </div>
-                    <div class="contact-item card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Availability</h3>
-                            <p>Online consultations & workshops worldwide</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form card">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <select id="interestSelect" required>
-                            <option value="">Select Interest</option>
-                            <option value="ai-education">AI in Education</option>
-                            <option value="research">Research Collaboration</option>
-                            <option value="workshop">Workshop/Consultation</option>
-                            <option value="other">Other Inquiry</option>
-                        </select>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Humaira Pervaish</div>
-                <p class="footer-description">
-                    Mathematics Educator & AI Analyst passionate about transforming education through artificial intelligence, data analytics, and innovative teaching methodologies.
-                </p>
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-researchgate"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2023 Humaira Pervaish. All rights reserved.</p>
-                    <p>Math Education • Artificial Intelligence • Innovation</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Link to JavaScript File -->
-    <script src="script.js"></script>
-</body>
-                                                             </html>
+                <div class="profile-img">
+                  
