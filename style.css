@@ -97,12 +97,27 @@ header {
 }
 
 .mobile-menu-btn {
+    /* Hide the button by default on large screens */
+.mobile-menu-btn {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--primary);
-    background: none;
-    border: none;
+    color: var(--primary-color); /* Ensure your variable name matches */
+}
+
+/* Show the button only on mobile screens (less than 768px) */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+        z-index: 1001; /* Keeps it above other elements */
+    }
+    
+    /* You likely also need to hide the regular nav links here */
+    .nav-links {
+        display: none; 
+    }
+}
+    
 }
 
 /* Hero Section */
